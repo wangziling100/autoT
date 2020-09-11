@@ -4,6 +4,7 @@ import requests
 
 import boto3
 from aws_lambda_powertools import Logger, Metrics, Tracer
+from requests.structures import CaseInsensitiveDict
 
 # https://awslabs.github.io/aws-lambda-powertools-python/#features
 tracer = Tracer()
@@ -17,6 +18,7 @@ session = boto3.Session()
 @logger.inject_lambda_context
 @tracer.capture_lambda_handler
 def handler(event, context):
+    get_page('https://app.plus500.com/')
     """
         AWS Lambda handler
         Parameters
@@ -92,3 +94,9 @@ def handler(event, context):
     except Exception as e:
         logger.exception(e)
         raise
+
+    def get_page(url, fn=None, save=True):
+        headers = CaseInsensitiveDict()
+        headers["Accept"] = "application/json"
+        r = requests.get(url, headers=headers)
+        print(r.text)

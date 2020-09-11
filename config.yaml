@@ -1,6 +1,6 @@
-AppName: TransactionMain # app name
-AppPath: transaction-main # app path
-Description: Lambda Python Template
+AppName: Robot1 # app name
+AppPath: robot1 # app path
+Description: experimental robot1
 GetwayMethod: post
 Handler: handler # code entry point
 Timeout: 30 # max. running time
