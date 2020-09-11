@@ -1,0 +1,21 @@
+name: Node.js Auto CI
+
+on:
+  push
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    outputs:
+      moduleDir: ${{ steps.auto-ci.outputs.moduleDir}}
+      info: ${{ steps.auto-ci.outputs.info}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: lambda-python-template
+        uses: wangziling100/LambdaPythonAction@v1
+        env:
+          GITHUB_WORKSPACE: github_workspace
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-central-1
+          SAM_CLI_TELEMETRY: 0
