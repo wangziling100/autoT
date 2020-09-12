@@ -19,3 +19,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-central-1
           SAM_CLI_TELEMETRY: 0
+        with:
+          rootDir: src
